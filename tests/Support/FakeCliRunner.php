@@ -42,6 +42,11 @@ final class FakeCliRunner implements RunnerInterface
         return new Request(params: [], options: $this->options);
     }
 
+    public function environment(): string
+    {
+        return 'test';
+    }
+
     public function io(): IoInterface
     {
         return new class ($this) implements IoInterface {
