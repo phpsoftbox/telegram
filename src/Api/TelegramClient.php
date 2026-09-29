@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace PhpSoftBox\Telegram\Api;
 
 use JsonException;
+use PhpSoftBox\Telegram\Webhook\WebhookSecret;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\StreamFactoryInterface;
@@ -135,9 +136,23 @@ class TelegramClient
         }
     }
 
+    /**
+     * Регистрирует webhook. Без явного `secret_token` в $options передаётся секрет, выведенный из токена бота
+     * ({@see WebhookSecret()}): его же нужно передать в WebhookHandler.
+     */
     public function setWebhook(string $url, array $options = []): TelegramResponse
     {
+        $options += ['secret_token' => $this->webhookSecret()];
+
         return $this->request('setWebhook', ['url' => $url] + $options);
+    }
+
+    /**
+     * Секрет webhook по умолчанию для этого бота.
+     */
+    public function webhookSecret(): string
+    {
+        return WebhookSecret::fromBotToken($this->token);
     }
 
     /**

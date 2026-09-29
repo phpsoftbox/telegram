@@ -14,6 +14,7 @@
     },
     "require": {
         "php": "^8.5",
+        "ext-mbstring": "*",
         "psr/http-client": "^1.0",
         "psr/http-factory": "^1.0",
         "psr/http-message": "^2.0",
@@ -25,6 +26,10 @@
         "phpsoftbox/cs-fixer": "^1.2.1",
         "phpsoftbox/http-message": "dev-master",
         "phpunit/phpunit": "^13.3"
+    },
+    "suggest": {
+        "phpsoftbox/cli-app": "Required for telegram:* console commands (extra.psb.files).",
+        "phpsoftbox/config": "Required for telegram:sync and telegram:sync:reset commands."
     },
     "autoload": {
         "psr-4": {

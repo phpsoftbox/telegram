@@ -67,6 +67,11 @@ final class TelegramBotRegistry
         return $this->bot($name)?->token();
     }
 
+    public function webhookSecret(?string $name = null): ?string
+    {
+        return $this->bot($name)?->webhookSecret();
+    }
+
     /**
      * @return array<string, TelegramBot>
      */

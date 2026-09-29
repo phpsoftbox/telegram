@@ -11,7 +11,7 @@ use PhpSoftBox\Telegram\Webhook\WebhookHandler;
 $client = new TelegramClient($token, $httpClient, $requestFactory, $streamFactory);
 $router = new UpdateRouter();
 $bot = new Bot($client, $router);
-$handler = new WebhookHandler($bot, $responseFactory, $streamFactory);
+$handler = new WebhookHandler($bot, $client->webhookSecret(), $responseFactory, $streamFactory);
 ```
 
 Алгоритм работы:
