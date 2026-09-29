@@ -51,10 +51,14 @@ $router->command('workspace', static function ($update, $context) use ($conversa
 });
 
 $bot = new Bot($client, $router, $conversations);
-$handler = new WebhookHandler($bot, $responseFactory, $streamFactory);
+// Секрет выводится из токена бота; setWebhook() регистрирует этот же секрет в Telegram.
+$handler = new WebhookHandler($bot, $client->webhookSecret(), $responseFactory, $streamFactory);
 
 $response = $handler->handle($request);
 ```
+
+`WebhookHandler` отклоняет с `401` запросы без заголовка `X-Telegram-Bot-Api-Secret-Token` с верным секретом —
+подробнее в [docs/04-webhook.md](docs/04-webhook.md).
 
 ## Команды и обработчики
 

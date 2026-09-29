@@ -35,4 +35,12 @@ final readonly class TelegramBot
     {
         return $this->handler;
     }
+
+    /**
+     * Секрет webhook по умолчанию: его передают в WebhookHandler, а setWebhook регистрирует его в Telegram.
+     */
+    public function webhookSecret(): string
+    {
+        return $this->client->webhookSecret();
+    }
 }

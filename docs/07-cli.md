@@ -33,6 +33,12 @@ php psb telegram:poll --bot=auth --debug
 php psb telegram:webhook --bot=auth --base-url=https://example.com
 ```
 
+Команда (как и `telegram:sync --webhook`) регистрирует секрет webhook, выведенный из токена бота; `WebhookHandler`
+принимает только запросы с этим секретом (см. [04-webhook.md](04-webhook.md)).
+
+Команды `telegram:*` требуют `phpsoftbox/cli-app`, `telegram:sync` и `telegram:sync:reset` — ещё `phpsoftbox/config`
+(оба пакета в `suggest`).
+
 ## Синхронизация и сброс команд
 
 Команды бота из `telegram.commands.<bot>` можно применить через:
